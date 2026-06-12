@@ -1,20 +1,25 @@
-if [ "$1" == "--date" ]; then
-    date
-fi
-
-if [ "$1" == "--logs" ]; then
-    COUNT=${2:-100}
-    for i in $(seq 1 $COUNT); do
-        FILENAME="log${i}.txt"
-        echo "Nazwa pliku: $FILENAME" > "$FILENAME"
-        echo "Skrypt: $0" >> "$FILENAME"
-        echo "Data utworzenia: $(date)" >> "$FILENAME"
-    done
-fi
-
-if [ "$1" == "--help" ]; then
-    echo "Dostępne opcje:"
-    echo "  --date         Wyświetla dzisiejszą datę"
-    echo "  --logs [N]     Tworzy N plików log (domyślnie 100)"
-    echo "  --help         Wyświetla tę pomoc"
-fi
+case "$1" in
+    --date|-d)
+        date
+        ;;
+    --logs|-l)
+        COUNT=${2:-100}
+        for i in $(seq 1 $COUNT); do
+            FILENAME="log${i}.txt"
+            echo "Nazwa pliku: $FILENAME" > "$FILENAME"
+            echo "Skrypt: $0" >> "$FILENAME"
+            echo "Data utworzenia: $(date)" >> "$FILENAME"
+        done
+        ;;
+    --help|-h)
+        echo "Dostępne opcje:"
+        echo "  --date, -d         Wyświetla dzisiejszą datę"
+        echo "  --logs, -l [N]     Tworzy N plików log (domyślnie 100)"
+        echo "  --help, -h         Wyświetla tę pomoc"
+        ;;
+--init)
+        git clone https://github.com/Marcin60365/Narzedzia-IT-Lab4.git .
+        export PATH="$PATH:$(pwd)"
+        echo "Repozytorium sklonowane, ścieżka dodana do PATH."
+        ;;
+esac
