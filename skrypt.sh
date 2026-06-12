@@ -22,4 +22,14 @@ case "$1" in
         export PATH="$PATH:$(pwd)"
         echo "Repozytorium sklonowane, ścieżka dodana do PATH."
         ;;
+--error|-e)
+        COUNT=${2:-100}
+        for i in $(seq 1 $COUNT); do
+            mkdir -p "error${i}"
+            FILENAME="error${i}/error${i}.txt"
+            echo "Nazwa pliku: $FILENAME" > "$FILENAME"
+            echo "Skrypt: $0" >> "$FILENAME"
+            echo "Data utworzenia: $(date)" >> "$FILENAME"
+        done
+        ;;
 esac
