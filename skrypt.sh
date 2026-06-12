@@ -11,3 +11,10 @@ if [ "$1" == "--logs" ]; then
         echo "Data utworzenia: $(date)" >> "$FILENAME"
     done
 fi
+
+if [ "$1" == "--help" ]; then
+    echo "Dostępne opcje:"
+    echo "  --date         Wyświetla dzisiejszą datę"
+    echo "  --logs [N]     Tworzy N plików log (domyślnie 100)"
+    echo "  --help         Wyświetla tę pomoc"
+fi
